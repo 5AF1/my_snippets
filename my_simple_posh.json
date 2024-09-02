@@ -15,7 +15,7 @@
                     "type": "command",
                     "style": "plain",
                     "foreground": "green",
-                    "template": "{{ .Output }}<#ffffff>:</>",
+                    "template": "<b>{{ .Output }}<#ffffff>:</></b>",
                     "properties": {
                         "shell": "bash",
                         "command": "hostname -I | awk '{print $1}'"
