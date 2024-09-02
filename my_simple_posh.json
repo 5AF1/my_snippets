@@ -8,7 +8,7 @@
                 {
                     "foreground": "lightGreen",
                     "style": "plain",
-                    "template": "<#ffffff>{{ if .SSHSession }}[󰬀󰬀󰫵]{{ end }}</><b>{{ .UserName }}@</b>",
+                    "template": "<#ffffff>{{ if .SSHSession }}[󰬀󰬀󰫵]{{ end }}</>{{ .UserName }}@",
                     "type": "session"
                 },
                 {
