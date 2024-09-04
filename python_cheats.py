@@ -10,27 +10,49 @@ import scipy
 # Set the seed for all libraries
 seed = 42
 
-random.seed(seed)
-np.random.seed(seed)
-tf.random.set_seed(seed)
-torch.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)
-sklearn.utils.check_random_state(seed)
-pd.set_option('use_numpy_random', True)
-np.random.seed(seed)
+def set_seed(seed):
+    try:
+        import random
+        random.seed(seed)
+    except ImportError:
+        pass
 
-# Note: scipy uses the same random number generator as numpy,
-# so setting the seed for numpy should be enough.
-# However, some scipy functions may use other libraries or algorithms
-# that have their own random number generators, so it's possible
-# that setting the seed for numpy might not be enough in all cases.
+    try:
+        import numpy as np
+        np.random.seed(seed)
+    except ImportError:
+        pass
 
-# Set environment variables for deterministic behavior
-os.environ['PYTHONHASHSEED'] = str(seed)
-os.environ['TF_CUDNN_DETERMINISTIC'] = 'true'
-os.environ['TF_DETERMINISTIC_OPS'] = 'true'
+    try:
+        import tensorflow as tf
+        tf.random.set_seed(seed)
+    except ImportError:
+        pass
 
-# Disable GPU non-determinism (if using GPU)
-if torch.cuda.is_available():
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    try:
+        import torch
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+    except ImportError:
+        pass
+
+    try:
+        import sklearn
+        sklearn.utils.check_random_state(seed)
+    except ImportError:
+        pass
+
+    try:
+        import os
+        os.environ['PYTHONHASHSEED'] = str(seed)
+        os.environ['TF_CUDNN_DETERMINISTIC'] = 'true'
+        os.environ['TF_DETERMINISTIC_OPS'] = 'true'
+    except ImportError:
+        pass
+
+    try:
+        if torch.cuda.is_available():
+            torch.backends.cudnn.deterministic = True
+            torch.backends.cudnn.benchmark = False
+    except ImportError:
+        pass
