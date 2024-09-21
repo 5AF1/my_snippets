@@ -24,7 +24,7 @@
                 {
                     "foreground": "lightWhite",
                     "style": "powerline",
-                    "template": "🐍({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}<#4c8bbe>{{ .Major }}</>.<#ffdc4e>{{ .Minor }}</>{{ end }}) ",
+                    "template": "🐍<#ffdc4e>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}<#4c8bbe>{{ .Major }}</>.<#ffdc4e>{{ .Minor }}</>{{ end }}<#4c8bbe>)</> ",
                     "type": "python"
                   },
                 {
