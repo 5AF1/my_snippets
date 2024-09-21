@@ -8,7 +8,7 @@
                 {
                     "foreground": "lightGreen",
                     "style": "plain",
-                    "template": "<#ffffff>{{ if .SSHSession }}[󰬀󰬀󰫵]{{ end }}</>{{ .UserName }}@",
+                    "template": "<#ffffff>{{ if .SSHSession }}[ssh]{{ end }}</>{{ .UserName }}@",
                     "type": "session"
                 },
                 {
@@ -58,23 +58,23 @@
             "segments": [
                 {
                     "style": "plain",
-                    "foreground": "#6c73ec",
+                    "foreground": "lightMagenta",
                     "template": "{{.HostName}}:{{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}󰫴󰫯",
                     "type": "sysinfo"
                 },
                 {
                     "type": "status",
                     "style": "plain",
-                    "foreground": "lightGreen",
+                    "foreground": "green",
                     "foreground_templates": [
-                        "{{ if gt .Code 0 }}#E06C75{{ end }}"
+                        "{{ if gt .Code 0 }}lightRed{{ end }}"
                     ],
                     "template": "{{ reason .Code }}"
                 },
                 {
-                    "foreground": "lightGreen",
+                    "foreground": "green",
                     "foreground_templates": [
-                        "{{ if gt .Code 0 }}#E06C75{{ end }}"
+                        "{{ if gt .Code 0 }}lightRed{{ end }}"
                     ],
                     "properties": {
                         "style": "roundrock",
@@ -85,9 +85,9 @@
                     "type": "executiontime"
                 },
                 {
-                    "foreground": "lightGreen",
+                    "foreground": "green",
                     "foreground_templates": [
-                        "{{ if gt .Code 0 }}#E06C75{{ end }}"
+                        "{{ if gt .Code 0 }}red{{ end }}"
                     ],
                     "properties": {
                         "always_enabled": true
@@ -104,7 +104,7 @@
             "newline": true,
             "segments": [
                 {
-                    "foreground": "#61AFEF",
+                    "foreground": "lightBlue",
                     "properties": {
                         "style": "full"
                     },
@@ -119,7 +119,7 @@
             "alignment": "right",
             "segments": [
                 {
-                    "foreground": "#E5C07B",
+                    "foreground": "lightYellow",
                     "properties": {
                         "time_format": "2006,1,2,15,4,5"
                     },
@@ -135,13 +135,13 @@
             "newline": true,
             "segments": [
                 {
-                    "foreground": "#E06C75",
+                    "foreground": "lightRed",
                     "style": "plain",
                     "template": "!",
                     "type": "root"
                 },
                 {
-                    "foreground": "#ffffff",
+                    "foreground": "lightWhite",
                     "style": "plain",
                     "template": "<b>$</b>",
                     "type": "text"
