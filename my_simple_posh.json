@@ -15,23 +15,18 @@
                     "type": "command",
                     "style": "plain",
                     "foreground": "green",
-                    "template": "<b>{{ .Output }}<lightWhite>:</></b>",
+                    "template": "<b>{{ .Output }}<lightWhite>:</></b> ",
                     "properties": {
                         "shell": "bash",
                         "command": "hostname -I | awk '{print $1}'"
                     }
                 },
                 {
-                    "background": "#306998",
-                    "foreground": "#FFE873",
-                    "_leading_diamond": "<#306998,transparent></>",
-                    "leading_diamond": "",
-                    "style": "diamond",
-                    "template": "{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}",
-                    "_trailing_diamond": "<#306998,transparent></> ",
-                    "trailing_diamond": "",
+                    "foreground": "lightWhite",
+                    "style": "powerline",
+                    "template": "({{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}<blue>{{ .Major }}</>.<lightYellow>{{ .Minor }}</>{{ end }}) ",
                     "type": "python"
-                },
+                  },
                 {
                     "foreground": "#F3C267",
                     "foreground_templates": [
