@@ -26,7 +26,7 @@
                     "style": "powerline",
                     "template": "🐍<#ffdc4e>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}<#4c8bbe>{{ .Major }}</>.<#ffdc4e>{{ .Minor }}</>{{ end }}<#4c8bbe>)</> ",
                     "type": "python"
-                  },
+                },
                 {
                     "foreground": "#F3C267",
                     "foreground_templates": [
@@ -39,10 +39,11 @@
                         "branch_max_length": 25,
                         "fetch_stash_count": true,
                         "fetch_status": true,
-                        "fetch_upstream_icon": true
+                        "fetch_upstream_icon": true,
+                        "github_icon": ""
                     },
                     "style": "plain",
-                    "template": "{{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
+                    "template": "{{ if( .UpstreamIcon ) }}{{ url .UpstreamIcon .UpstreamURL }}{{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
                     "type": "git"
                 }
             ],
@@ -104,7 +105,7 @@
                         "style": "full"
                     },
                     "style": "plain",
-                    "template": "<b>\"{{ .Path }}\"</b>",
+                    "template": "<b>\"{{ path .Path .Location }}\"</b>",
                     "type": "path"
                 }
             ],
