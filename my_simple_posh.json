@@ -8,14 +8,14 @@
                 {
                     "foreground": "lightGreen",
                     "style": "plain",
-                    "template": "<#ffffff>{{ if .SSHSession }}[ssh]{{ end }}</>{{ .UserName }}@",
+                    "template": "<white>{{ if .SSHSession }}[ssh]{{ end }}</><b>{{ .UserName }}@</b>",
                     "type": "session"
                 },
                 {
                     "type": "command",
                     "style": "plain",
                     "foreground": "green",
-                    "template": "<b>{{ .Output }}<#ffffff>:</></b>",
+                    "template": "<b>{{ .Output }}<lightWhite>:</></b>",
                     "properties": {
                         "shell": "bash",
                         "command": "hostname -I | awk '{print $1}'"
@@ -59,7 +59,7 @@
                 {
                     "style": "plain",
                     "foreground": "lightMagenta",
-                    "template": "{{.HostName}}:{{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}󰫴󰫯",
+                    "template": "{{.HostName}}:{{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}<b>GB</b>",
                     "type": "sysinfo"
                 },
                 {
