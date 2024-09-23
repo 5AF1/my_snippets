@@ -100,7 +100,7 @@
             "newline": true,
             "segments": [
                 {
-                    "foreground": "lightBlue",
+                    "foreground": "red",
                     "properties": {
                         "style": "agnoster_full"
                     },
