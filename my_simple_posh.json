@@ -1,5 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "var": {
+        "Home": "/home/"
+    },
     "blocks": [
         {
             "alignment": "left",
@@ -8,18 +11,27 @@
                 {
                     "foreground": "lightGreen",
                     "style": "plain",
-                    "template": "<white>{{ if .SSHSession }}[ssh]{{ end }}</><b>{{ .UserName }}@</b>",
+                    "template": "<white>{{ if .SSHSession }}ssh {{ end }}</><b>{{ .UserName }}@</b>",
                     "type": "session"
                 },
                 {
                     "type": "command",
                     "style": "plain",
                     "foreground": "green",
-                    "template": "<b>{{ .Output }}<lightWhite>:</></b> ",
+                    "template": "<b>{{ .Output }}<lightWhite>:</></b>",
                     "properties": {
                         "shell": "bash",
                         "command": "hostname -I | awk '{print $1}'"
                     }
+                },
+                {
+                    "foreground": "lightBlue",
+                    "properties": {
+                        "style": "agnoster_full"
+                    },
+                    "style": "plain",
+                    "template": "{{ if contains (nospace (cat (.Var.Home) (.UserName))) (.Location) }}<b>~</b>{{ else }}<b><lightRed>/</></b>{{ end }} ",
+                    "type": "path"
                 },
                 {
                     "foreground": "lightWhite",
@@ -100,12 +112,12 @@
             "newline": true,
             "segments": [
                 {
-                    "foreground": "red",
+                    "foreground": "lightBlue",
                     "properties": {
                         "style": "agnoster_full"
                     },
                     "style": "plain",
-                    "template": "<b>\"{{ path .Path .Location }}\"</b>",
+                    "template": "<b>\"{{ path .Location .Location }}\"</b>",
                     "type": "path"
                 }
             ],
@@ -117,7 +129,7 @@
                 {
                     "foreground": "lightYellow",
                     "properties": {
-                        "time_format": "2006,1,2,15,4,5"
+                        "time_format": "2006,01,02,15,04,05"
                     },
                     "style": "plain",
                     "template": " ({{ .CurrentDate | date .Format }})",
