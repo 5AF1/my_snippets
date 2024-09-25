@@ -1,7 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
     "var": {
-        "Home": "/home/"
+        "Home": "/home/",
+        "Tilda": "~"
     },
     "blocks": [
         {
@@ -10,15 +11,21 @@
             "segments": [
                 {
                     "foreground": "lightGreen",
+                    "foreground_templates": [
+                        "{{ if .Root }}white{{ end }}"
+                    ],
                     "style": "plain",
-                    "template": "<white>{{ if .SSHSession }}ssh {{ end }}</><b>{{ .UserName }}@</b>",
+                    "template": "<white>{{ if .SSHSession }}ssh {{ end }}</>{{ if .Root }}{{ .UserName }}@{{ else }}<b>{{ .UserName }}@</b>{{ end }}",
                     "type": "session"
                 },
                 {
                     "type": "command",
                     "style": "plain",
-                    "foreground": "green",
-                    "template": "<b>{{ .Output }}<lightWhite>:</></b>",
+                    "foreground": "lightGreen",
+                    "foreground_templates": [
+                        "{{ if .Root }}white{{ end }}"
+                    ],
+                    "template": "{{ if .Root }}{{ .Output }}<lightWhite>:</>{{ else }}<b>{{ .Output }}<lightWhite>:</></b>{{ end }}",
                     "properties": {
                         "shell": "bash",
                         "command": "hostname -I | awk '{print $1}'"
@@ -30,7 +37,7 @@
                         "style": "agnoster_full"
                     },
                     "style": "plain",
-                    "template": "{{ if contains (nospace (cat (.Var.Home) (.UserName))) (.Location) }}<b>~</b>{{ else }}<b><lightRed>/</></b>{{ end }} ",
+                    "template": "{{ if contains (nospace (cat (.Var.Home) (.UserName))) (.Location) }}<b>{{ path .Var.Tilda (nospace (cat (.Var.Home) (.UserName))) }}</b>{{ else }}<b><lightRed>/</></b>{{ end }} ",
                     "type": "path"
                 },
                 {
@@ -77,7 +84,7 @@
                     "foreground_templates": [
                         "{{ if gt .Code 0 }}lightRed{{ end }}"
                     ],
-                    "template": "{{ reason .Code }}"
+                    "template": " {{ reason .Code }}"
                 },
                 {
                     "foreground": "green",
@@ -85,10 +92,8 @@
                         "{{ if gt .Code 0 }}lightRed{{ end }}"
                     ],
                     "properties": {
-                        "style": "roundrock",
                         "always_enabled": true
                     },
-                    "style": "diamond",
                     "template": " {{ .FormattedMs }}",
                     "type": "executiontime"
                 },
@@ -113,11 +118,15 @@
             "segments": [
                 {
                     "foreground": "lightBlue",
+                    "foreground_templates": [
+                        "{{ if not .Writable }}lightRed{{ end }}",
+                        "{{ if .Root }}lightWhite{{ end }}"
+                    ],
                     "properties": {
                         "style": "agnoster_full"
                     },
                     "style": "plain",
-                    "template": "<b>\"{{ path .Location .Location }}\"</b>",
+                    "template": "{{ if .Root }}\"{{ path .Location .Location }}\"{{ else }}<b>\"{{ path .Location .Location }}\"</b>{{ end }} ",
                     "type": "path"
                 }
             ],
@@ -143,15 +152,9 @@
             "newline": true,
             "segments": [
                 {
-                    "foreground": "lightRed",
-                    "style": "plain",
-                    "template": "!",
-                    "type": "root"
-                },
-                {
                     "foreground": "lightWhite",
                     "style": "plain",
-                    "template": "<b>$</b>",
+                    "template": "{{if .Root}}<b>#</b>{{else}}<b>$</b>{{end}}",
                     "type": "text"
                 }
             ],
