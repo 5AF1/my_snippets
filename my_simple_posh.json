@@ -41,6 +41,20 @@
                     "type": "path"
                 },
                 {
+                    "properties": {
+                        "mapped_shell_names": {
+                            "bash": "🐚",
+                            "fish": "🐋",
+                            "zsh": "🇿",
+                            "pwsh": ">_"
+                        }
+                    },
+                    "template": "{{ .Name }} ",
+                    "foreground": "lightWhite",
+                    "style": "plain",
+                    "type": "shell"
+                },
+                {
                     "foreground": "lightWhite",
                     "style": "powerline",
                     "template": "🐍<#ffdc4e>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}<#4c8bbe>{{ .Major }}</>.<#ffdc4e>{{ .Minor }}</>{{ end }}<#4c8bbe>)</> ",
@@ -154,7 +168,7 @@
                 {
                     "foreground": "lightWhite",
                     "style": "plain",
-                    "template": "{{if .Root}}<b>#</b>{{else}}<b>$</b>{{end}}",
+                    "template": "[{{.PromptCount}}]{{if .Root}}<b>#</b>{{else}}<b>$</b>{{end}}",
                     "type": "text"
                 }
             ],
