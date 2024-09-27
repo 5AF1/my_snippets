@@ -1,3 +1,6 @@
+### micro
+export GIT_EDITOR=micro
+
 ### oh my posh
 export PATH=$PATH:/home/tuf/bin
 # export PATH=$PATH:/root/.local/bin
