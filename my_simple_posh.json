@@ -169,26 +169,6 @@
             "newline": true,
             "segments": [
                 {
-                    "style": "plain",
-                    "_template": "{{ if( .UpstreamIcon ) }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
-                    "template_": "\uE0A0 branch_icon \u2261 branch_identical_icon \u2191 branch_ahead_icon \u2193 branch_behind_icon \u2262 branch_gone_icon \uF417 commit_icon \uF412 tag_icon \uE728 rebase_icon \uE29B cherry_pick_icon \uF0E2 revert_icon \uE727 merge_icon \uF594 no_commits_icon \uF408 github_icon \uF296 gitlab_icon \uF171 bitbucket_icon \uEBE8 azure_devops_icon \uF270 codecommit_icon \uF330 codeberg_icon \uE5FB git_icon ",
-                    "template": " RepoName {{ .RepoName }} HEAD {{ .HEAD }} Ref {{ .Ref }} BranchStatus {{ .BranchStatus }} {{if not .UpstreamGone }}Upstream {{ .Upstream }} UpstreamIconURL {{ url .UpstreamIcon .UpstreamURL}} {{end}}StashCount {{ .StashCount }} WorktreeCount {{ .WorktreeCount }} IsWorkTree {{ .IsWorkTree }} IsBare {{ .IsBare }}LatestTag {{ .LatestTag }} {{ if .Working.Changed }}WorkingString {{ .Working.String }} {{end}}{{ if .Staging.Changed }}StagingString {{ .Staging.String }} {{end}}--- CommitSubject {{ .Commit.Subject }} CommitSha {{ substr 0 8 .Commit.Sha }} CommitAuthor {{ .Commit.Author.Name }} CommitAuthorEmail {{ .Commit.Author.Email }} CommitCommitter {{ .Commit.Committer.Name }} CommitCommitterEmail {{ .Commit.Committer.Email }} CommitTimestamp {{ .Commit.Timestamp | date .Var.Tformat }}",
-                    "reason": [
-                        " branch_icon ≡ branch_identical_icon ↑ branch_ahead_icon ↓ branch_behind_icon ≢ branch_gone_icon  commit_icon  tag_icon  rebase_icon  cherry_pick_icon  revert_icon  merge_icon  no_commits_icon  github_icon  gitlab_icon  bitbucket_icon  azure_devops_icon  codecommit_icon  codeberg_icon  git_icon ",
-                        "Dropped Ahead {{ .Ahead }} Behind {{ .Behind }} for BranchStatus {{ .BranchStatus }}",
-                        "Dropped Detached {{ .Detached }} Merge {{ .Merge }} Rebase {{ .Rebase }} CherryPick {{ .CherryPick }} Revert {{ .Revert }} for HEAD {{ .HEAD }}",
-                        "Dropped Dir {{ path .UpstreamIcon .Dir }} Kraken {{ url .UpstreamIcon .Kraken }} "
-                    ],
-                    "properties": {
-                        "fetch_status": true,
-                        "fetch_upstream_icon": true,
-                        "fetch_bare_info": true,
-                        "github_icon": "",
-                        "fetch_user": true
-                    },
-                    "type": "git"
-                },
-                {
                     "foreground": "lightWhite",
                     "style": "plain",
                     "template": "[{{.PromptCount}}]{{if .Root}}<b>#</b>{{else}}<b>$</b>{{end}}",
