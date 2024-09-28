@@ -170,7 +170,46 @@
             "segments": [
                 {
                     "style": "plain",
-                    "template": "RepoName {{ .RepoName }} HEAD {{ .HEAD }}  BranchStatus {{ .BranchStatus }} {{if not .UpstreamGone }}Upstream {{ .Upstream }} UpstreamIconURL {{ url .UpstreamIcon .UpstreamURL}} {{end}}StashCount {{ .StashCount }} WorktreeCount {{ .WorktreeCount }} IsWorkTree {{ .IsWorkTree }} IsBare {{ .IsBare }}LatestTag {{ .LatestTag }} {{ if .Working.Changed }}WorkingString {{ .Working.String }} {{end}}{{ if .Staging.Changed }}StagingString {{ .Staging.String }} {{end}}--- CommitSubject {{ .Commit.Subject }} CommitSha {{ substr 0 8 .Commit.Sha }} CommitAuthor {{ .Commit.Author.Name }} CommitCommitter {{ .Commit.Committer.Name }} CommitTimestamp {{ .Commit.Timestamp | date .Var.Tformat }}",
+                    "type": "git",
+                    "template": "{{ .RepoName }} {{if .LatestTag}}{{ .LatestTag }} {{end}}{{ url .UpstreamIcon .UpstreamURL}}{{if not .UpstreamGone }}{{ .Upstream }}{{end}} {{ .HEAD }}",
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true,
+                        "fetch_bare_info": true,
+                        "github_icon": "",
+                        "branch_icon": ""
+                    }
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "right",
+            "segments": [
+                {
+                    "style": "plain",
+                    "type": "git",
+                    "template": "{{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}💻{{ .Working.String }} {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}|{{ end }}{{ if .Staging.Changed }}✅{{ .Staging.String }} {{ end }}{{ if gt .StashCount 0 }}🗃️{{ .StashCount }} {{ end }}{{if gt .WorktreeCount 0}}{{if not .IsWorkTree}}🏡{{end}}🌳{{ .WorktreeCount }}{{end}}{{if .IsBare }}🐻{{end}} <b>#{{ substr 0 8 .Commit.Sha }}</b> {{if eq .Commit.Committer.Name .Commit.Author.Name }}{{.Commit.Author.Name}}{{else}}{{.Commit.Author.Name}} and {{.Commit.Committer.Name}}{{end}} {{ago .Commit.Timestamp}}󰔟",
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true,
+                        "fetch_bare_info": true,
+                        "branch_identical_icon": "",
+                        "branch_ahead_icon": "",
+                        "branch_behind_icon": "",
+                        "branch_gone_icon": "󰟢"
+                    }
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "style": "plain",
+                    "template": "{{ .RepoName }} {{if .LatestTag}}{{ .LatestTag }} {{end}}{{ url .UpstreamIcon .UpstreamURL}}{{if not .UpstreamGone }}{{ .Upstream }}{{end}} {{ .HEAD }} {{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}💻{{ .Working.String }} {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}|{{ end }}{{ if .Staging.Changed }}✅{{ .Staging.String }} {{ end }}{{ if gt .StashCount 0 }}🗃️{{ .StashCount }} {{ end }}{{if gt .WorktreeCount 0}}{{if not .IsWorkTree}}🏡{{end}}🌳{{ .WorktreeCount }}{{end}}{{if .IsBare }}🐻{{end}} <b>#{{ substr 0 8 .Commit.Sha }}</b> {{if eq .Commit.Committer.Name .Commit.Author.Name }}{{.Commit.Author.Name}}{{else}}{{.Commit.Author.Name}} and {{.Commit.Committer.Name}}{{end}} {{ago .Commit.Timestamp}}󰔟",
                     "reason": [
                         "{{ if( .UpstreamIcon ) }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
                         "\uE0A0 branch_icon \u2261 branch_identical_icon \u2191 branch_ahead_icon \u2193 branch_behind_icon \u2262 branch_gone_icon \uF417 commit_icon \uF412 tag_icon \uE728 rebase_icon \uE29B cherry_pick_icon \uF0E2 revert_icon \uE727 merge_icon \uF594 no_commits_icon \uF408 github_icon \uF296 gitlab_icon \uF171 bitbucket_icon \uEBE8 azure_devops_icon \uF270 codecommit_icon \uF330 codeberg_icon \uE5FB git_icon ",
@@ -179,7 +218,8 @@
                         "Dropped Ref {{ .Ref }} for HEAD {{ .HEAD }}",
                         "Dropped Detached {{ .Detached }} Merge {{ .Merge }} Rebase {{ .Rebase }} CherryPick {{ .CherryPick }} Revert {{ .Revert }} for HEAD {{ .HEAD }}",
                         "Dropped Dir {{ path .UpstreamIcon .Dir }} Kraken {{ url .UpstreamIcon .Kraken }} ",
-                        "Dropped CommitAuthorEmail {{ .Commit.Author.Email }} and CommitCommitterEmail {{ .Commit.Committer.Email }}"
+                        "Dropped CommitAuthorEmail {{ .Commit.Author.Email }} and CommitCommitterEmail {{ .Commit.Committer.Email }} CommitSubject {{ .Commit.Subject }} ",
+                        "Dropped at ({{ .Commit.Timestamp | date .Var.Tformat }}) for {{ago .Commit.Timestamp}} ago"
                     ],
                     "properties": {
                         "fetch_status": true,
