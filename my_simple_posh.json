@@ -6,6 +6,30 @@
         "Tilda": "~",
         "Tformat": "2006,01,02,15,04,05"
     },
+    "palette": {
+        "py-yellow": "#ffdc4e",
+        "py-blue": "#4c8bbe",
+
+        "git-cyan": "#00b0bd",
+        "git-lightCyan": "#97D1D4",
+        "git-yellow": "#ffc800",
+        "git-lightYellow": "#E5CE7D",
+        "git-red": "#F54D27",
+        "git-lightRed": "#f77558",
+        "git-white": "#d8d7ce",
+
+        "ghub-foreground": "#193549",
+        "ghub-purple": "#773FC7",
+        "ghub-green": "#3FB950",
+        "ghub-cyan": "#51dfda",
+        "ghub-magenta": "#F778BA",
+
+        "git": "#F3C267",
+        "git-modified": "#FF9248",
+        "git-diverged": "#FF4500",
+        "git-ahead": "#B388FF",
+        "git-behind": "#B388FF"
+    },
     "blocks": [
         {
             "alignment": "left",
@@ -59,27 +83,8 @@
                 {
                     "foreground": "lightWhite",
                     "style": "powerline",
-                    "template": "🐍<#ffdc4e>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}<#4c8bbe>{{ .Major }}</>.<#ffdc4e>{{ .Minor }}</>{{ end }}<#4c8bbe>)</> ",
+                    "template": "<p:py-blue>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}<p:py-yellow>{{ .Venv }}🐍</>{{ end }}<p:py-blue>{{ .Major }}</>.<p:py-yellow>{{ .Minor }}</>{{ end }}<p:py-blue>)</> ",
                     "type": "python"
-                },
-                {
-                    "foreground": "#F3C267",
-                    "foreground_templates": [
-                        "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}",
-                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}",
-                        "{{ if gt .Ahead 0 }}#B388FF{{ end }}",
-                        "{{ if gt .Behind 0 }}#B388FF{{ end }}"
-                    ],
-                    "properties": {
-                        "branch_max_length": 25,
-                        "fetch_stash_count": true,
-                        "fetch_status": true,
-                        "fetch_upstream_icon": true,
-                        "github_icon": ""
-                    },
-                    "style": "plain",
-                    "template": "{{ if( .UpstreamIcon ) }}{{ url .UpstreamIcon .UpstreamURL }} {{ end }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} ",
-                    "type": "git"
                 }
             ],
             "type": "prompt"
@@ -160,6 +165,59 @@
                     "style": "plain",
                     "template": " ({{ .CurrentDate | date .Format }})",
                     "type": "time"
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "left",
+            "newline": true,
+            "segments": [
+                {
+                    "style": "plain",
+                    "type": "git",
+                    "template": "<b><p:git-lightRed>󰇀{{ url .RepoName .UpstreamURL}} </>{{if .LatestTag}}<p:ghub-green>{{ .LatestTag }} </>{{end}}<p:ghub-purple>{{ url .UpstreamIcon .UpstreamURL}}{{if not .UpstreamGone }}{{ .Upstream }}{{end}}</> {{ .HEAD }}</b>",
+                    "foreground": "p:git-lightYellow",
+                    "foreground_templates": [
+                        "{{ if (.Staging.Changed) }}p:git-yellow{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git-red{{ end }}",
+                        "{{ if gt .Ahead 0 }}p:git-lightCyan{{ end }}",
+                        "{{ if gt .Behind 0 }}p:ghub-magenta{{ end }}"
+                    ],
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true,
+                        "fetch_bare_info": true,
+                        "github_icon": "",
+                        "branch_icon": ""
+                    }
+                }
+            ],
+            "type": "prompt"
+        },
+        {
+            "alignment": "right",
+            "segments": [
+                {
+                    "style": "plain",
+                    "type": "git",
+                    "template": "<b>{{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}💻{{ .Working.String }} {{ end }}{{ if .Staging.Changed }}✅{{ .Staging.String }} {{ end }}{{ if gt .StashCount 0 }}🗃️{{ .StashCount }} {{ end }}{{if gt .WorktreeCount 0}}{{if not .IsWorkTree}}🏡{{end}}🌳{{ .WorktreeCount }}{{end}}</b>{{if .IsBare }}🐻{{end}} <p:git-white><b>#{{ substr 0 8 .Commit.Sha }}</b> 🖊️ {{.Commit.Author.Name}}{{if ne .Commit.Committer.Name .Commit.Author.Name }}✊{{.Commit.Committer.Name}}{{end}}⌛{{ago .Commit.Timestamp}}</>",
+                    "foreground": "p:git-lightYellow",
+                    "foreground_templates": [
+                        "{{ if (.Staging.Changed) }}p:git-yellow{{ end }}",
+                        "{{ if and (gt .Ahead 0) (gt .Behind 0) }}p:git-red{{ end }}",
+                        "{{ if gt .Ahead 0 }}p:git-lightCyan{{ end }}",
+                        "{{ if gt .Behind 0 }}p:ghub-magenta{{ end }}"
+                    ],
+                    "properties": {
+                        "fetch_status": true,
+                        "fetch_upstream_icon": true,
+                        "fetch_bare_info": true,
+                        "branch_identical_icon": "",
+                        "branch_ahead_icon": "",
+                        "branch_behind_icon": "",
+                        "branch_gone_icon": "󰟢"
+                    }
                 }
             ],
             "type": "prompt"
