@@ -1,6 +1,6 @@
 {
     "name": "Thayer Bright",
-    "comment": "Ported for Terminix Colour Scheme",
+    "comment": "Ported for Terminix Colour Scheme. Path. /home/safi/.config/tilix/schemes",
     "use-theme-colors": false,
     "foreground-color": "#f8f8f8",
     "background-color": "#1b1d1e",

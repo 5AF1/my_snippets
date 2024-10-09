@@ -1,5 +1,6 @@
 [General]
 Description=ThayerBright
+;file path /usr/share/qtermwidget5/color-schemes
 
 [Background]
 Color=27,29,30
