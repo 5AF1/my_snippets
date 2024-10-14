@@ -67,20 +67,6 @@
                     "type": "path"
                 },
                 {
-                    "properties": {
-                        "mapped_shell_names": {
-                            "bash": "🐚",
-                            "fish": "🐋",
-                            "zsh": "🇿",
-                            "pwsh": ">_"
-                        }
-                    },
-                    "template": "{{ .Name }} ",
-                    "foreground": "lightWhite",
-                    "style": "plain",
-                    "type": "shell"
-                },
-                {
                     "foreground": "lightWhite",
                     "style": "powerline",
                     "template": "<p:py-blue>(</>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}<p:py-yellow>{{ .Venv }}🐍</>{{ end }}<p:py-blue>{{ .Major }}</>.<p:py-yellow>{{ .Minor }}</>{{ end }}<p:py-blue>)</> ",
@@ -168,7 +154,7 @@
                 {
                     "style": "plain",
                     "type": "git",
-                    "template": "<b>{{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}💻{{ .Working.String }} {{ end }}{{ if .Staging.Changed }}✅{{ .Staging.String }} {{ end }}{{ if gt .StashCount 0 }}🗃️{{ .StashCount }} {{ end }}{{if gt .WorktreeCount 0}}{{if not .IsWorkTree}}🏡{{end}}🌳{{ .WorktreeCount }}{{end}}</b>{{if .IsBare }}🐻{{end}} <p:git-white><b>#{{ substr 0 8 .Commit.Sha }}</b> 🖊️ {{.Commit.Author.Name}}{{if ne .Commit.Committer.Name .Commit.Author.Name }}✊{{.Commit.Committer.Name}}{{end}}⌛{{ago .Commit.Timestamp}}</>",
+                    "template": "<b>{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} 💻{{ .Working.String }}{{ end }}{{ if .Staging.Changed }} ✅{{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} 📥{{ .StashCount }}{{ end }}{{if gt .WorktreeCount 0}} {{if not .IsWorkTree}}🏡{{end}}🌳{{ .WorktreeCount }}{{end}}</b>{{if .IsBare }}🐻{{end}}<p:git-white><b> #{{ substr 0 8 .Commit.Sha }}</b> 🖋 {{.Commit.Author.Name}}{{if ne .Commit.Committer.Name .Commit.Author.Name }}✊{{.Commit.Committer.Name}}{{end}}⌛{{ago .Commit.Timestamp}}</>",
                     "foreground": "p:git-lightYellow",
                     "foreground_templates": [
                         "{{ if (.Staging.Changed) }}p:git-yellow{{ end }}",
@@ -194,6 +180,20 @@
             "newline": true,
             "segments": [
                 {
+                    "foreground": "lightWhite",
+                    "style": "plain",
+                    "type": "shell",
+                    "properties": {
+                        "mapped_shell_names": {
+                            "bash": "🐚",
+                            "fish": "🐋",
+                            "zsh": "🇿",
+                            "pwsh": ">_"
+                        }
+                    },
+                    "template": "{{ .Name }} "
+                },
+                {
                     "type": "status",
                     "style": "plain",
                     "foreground": "red",
@@ -207,14 +207,14 @@
                     // "foreground": "lightWhite",
                     "foreground": "green",
                     "foreground_templates": [
-                        "{{ if gt .Code 0 }}lightRed{{ end }}"
+                        "{{ if gt .Code 0 }}red{{ end }}"
                     ],
                     "properties": {
                         "always_enabled": true,
                         "style": "round"
                     },
                     "style": "plain",
-                    "template": "{{ .FormattedMs }}<f>{{ if gt .Code 0 }}{{else}}{{ end }}</f>[{{.PromptCount}}]{{if .Root}}<b>#</b>{{else}}<b>$</b>{{end}}"
+                    "template": "{{ .FormattedMs }}<b><f>{{ if gt .Code 0 }}{{else}}{{ end }}</f></b><white>[</><b>{{.PromptCount}}</b><white>]{{if .Root}}<b>#</b>{{else}}<b>$</b>{{end}}</>"
                 }
             ],
             "type": "prompt"
