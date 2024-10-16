@@ -79,10 +79,65 @@
             "alignment": "right",
             "segments": [
                 {
+                    "type": "os",
                     "style": "plain",
                     "foreground": "lightMagenta",
-                    "template": "{{.HostName}}:{{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}<b>GB</b>",
+                    "template": "{{ if .WSL }}🪟{{ end }} {{.Icon}}",
+                    "properties": {
+                        "ubuntu": "",
+                        "mint": "󰣭"
+                    }
+                },
+                {
+                    "type": "command",
+                    "style": "plain",
+                    "foreground": "lightMagenta",
+                    "template": "{{ .Output }}",
+                    "properties": {
+                        "shell": "bash",
+                        "command": "arch"
+                    }
+                },
+                {
+                    "foreground": "lightWhite",
+                    "style": "plain",
+                    "type": "shell",
+                    "properties": {
+                        "mapped_shell_names": {
+                            "bash": "🐚",
+                            "fish": "🐋",
+                            "zsh": "🇿",
+                            "pwsh": "<blue></blue>"
+                        }
+                    },
+                    "template": "{{ .Name }}"
+                },
+                {
+                    "style": "plain",
+                    "foreground": "lightMagenta",
+                    "template": "{{.Load1}}{{.HostName}} 🐏{{ round ((divf (sub .PhysicalTotalMemory .PhysicalAvailableMemory) 1073741824.0)) .Precision}}/{{ round ((divf .PhysicalTotalMemory 1073741824.0)) .Precision}}🐑{{ round ((divf (sub .SwapTotalMemory .SwapFreeMemory) 1073741824.0)) .Precision}}/{{ round ((divf .SwapTotalMemory 1073741824.0)) .Precision}}",
+                    "properties": {
+                        "precision": 2
+                    },
                     "type": "sysinfo"
+                },
+                {
+                    "foreground": "#ffffff",
+                    "foreground_templates": [
+                        "{{if eq \"Charged\" .State.String}}#ffffff{{end}}",
+                        "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+                        "{{if eq \"Discharging\" .State.String}}#FFFB38{{end}}",
+                        "{{if eq \"Not Charging\" .State.String}}#33DD2D{{end}}"
+                    ],
+                    "properties": {
+                        "charged_icon": "🔋",
+                        "charging_icon": "🔌",
+                        "discharging_icon": "💨",
+                        "not_charging_icon": "🔋"
+                    },
+                    "style": "plain",
+                    "template": "{{ if not .Error }}{{ if ge 10 .Percentage }}🪫 {{end}}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}%",
+                    "type": "battery"
                 }
             ],
             "type": "prompt"
@@ -179,20 +234,6 @@
             "alignment": "left",
             "newline": true,
             "segments": [
-                {
-                    "foreground": "lightWhite",
-                    "style": "plain",
-                    "type": "shell",
-                    "properties": {
-                        "mapped_shell_names": {
-                            "bash": "🐚",
-                            "fish": "🐋",
-                            "zsh": "🇿",
-                            "pwsh": ">_"
-                        }
-                    },
-                    "template": "{{ .Name }} "
-                },
                 {
                     "type": "status",
                     "style": "plain",
