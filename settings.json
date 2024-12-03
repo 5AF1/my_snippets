@@ -1,0 +1,73 @@
+{
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor"
+    },
+    "codeium.enableConfig": {
+        "*": true,
+        "gitignore": true,
+        "pip-requirements": true,
+        "markdown": true,
+        "quarto": true
+    },
+    //---//
+    "workbench.colorTheme": "Monokai",
+    "workbench.iconTheme": "material-icon-theme",
+    //---//
+    "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+    "editor.fontLigatures": true,
+    //---//
+    "editor.mouseWheelZoom": true,
+    "terminal.integrated.mouseWheelZoom": true,
+    //---//
+    "workbench.list.smoothScrolling": true,
+    "editor.smoothScrolling": true,
+    "terminal.integrated.smoothScrolling": true,
+    "editor.minimap.showSlider": "always",
+    "notebook.output.scrolling": true,
+    //---//
+    // "python.REPL.sendToNativeREPL": false,
+    // "python.REPL.enableREPLSmartSend": false,
+    "interactiveWindow.executeWithShiftEnter": true,
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    //---//
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.minimap.renderCharacters": false,
+    //---//
+    "python.analysis.autoFormatStrings": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    // "python.analysis.inlayHints.variableTypes": true,
+    // "python.analysis.typeCheckingMode": "standard",
+    //---//
+    "debugpy.debugJustMyCode": false,
+    "jupyter.debugJustMyCode": false,
+    //---//
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorStyleInactive": "underline",
+    "terminal.integrated.cursorWidth": 2,
+    //---//
+    "notebook.cellFocusIndicator": "border",
+    "notebook.lineNumbers": "on",
+    //---//
+    "git.autofetch": true,
+    "terminal.integrated.allowedLinkSchemes": [
+        "file",
+        "http",
+        "https",
+        "mailto",
+        "vscode",
+        "vscode-insiders",
+        "gitkraken"
+    ],
+    "diffEditor.ignoreTrimWhitespace": false,
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.fontSize": 12,
+    "cSpell.userWords": [
+        "GeoGebra",
+        "ultralytics"
+    ],
+    "[quarto]": {
+        "editor.defaultFormatter": "quarto.quarto"
+    },
+}
