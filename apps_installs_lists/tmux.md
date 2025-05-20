@@ -12,5 +12,7 @@ add the following to `~/.tmux.conf`
 set -g mouse on
 ```
 
+Also run `tmux source ~/.tmux.conf` to confirm change in configuration.
+
 ## quick exit
 ctrl + B D
