@@ -11,3 +11,6 @@ add the following to `~/.tmux.conf`
 ```yaml
 set -g mouse on
 ```
+
+## quick exit
+ctrl + B D
