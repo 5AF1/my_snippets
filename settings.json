@@ -1,56 +1,66 @@
 {
+    //---markdown---//
     "workbench.editorAssociations": {
         "*.md": "vscode.markdown.preview.editor"
     },
+    "markdown.extension.list.indentationSize": "inherit",
+    //---codeium---//
     "codeium.enableConfig": {
         "*": true,
         "gitignore": true,
         "pip-requirements": true,
         "markdown": true,
-        "quarto": true
+        "quarto": true,
+        "ignore": true,
+        "plaintext": true,
+        "jinja": true
     },
-    //---//
+    //---theme---//
     "workbench.colorTheme": "Monokai",
     "workbench.iconTheme": "material-icon-theme",
-    //---//
+    //---search highlight---//
+    "workbench.colorCustomizations": {
+        "editor.findMatchHighlightBackground": "#4A578EFE",
+        "editor.findMatchForeground": "#FAD744",
+        "editor.findMatchBackground": "#EF5455",
+        "editor.findMatchHighlightForeground": "#FAD744FE"
+    },
+    //---font---//
     "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
     "editor.fontLigatures": true,
-    //---//
+    //---mouse wheel zoom---//
     "editor.mouseWheelZoom": true,
     "terminal.integrated.mouseWheelZoom": true,
-    //---//
+    //---scroll---//
     "workbench.list.smoothScrolling": true,
     "editor.smoothScrolling": true,
     "terminal.integrated.smoothScrolling": true,
     "editor.minimap.showSlider": "always",
     "notebook.output.scrolling": true,
-    //---//
+    //---ipython---//
     // "python.REPL.sendToNativeREPL": false,
     // "python.REPL.enableREPLSmartSend": false,
     "interactiveWindow.executeWithShiftEnter": true,
     "jupyter.interactiveWindow.creationMode": "perFile",
     "jupyter.interactiveWindow.textEditor.executeSelection": true,
-    //---//
+    //---ruff---//
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
     "editor.minimap.renderCharacters": false,
-    //---//
+    //---python---//
     "python.analysis.autoFormatStrings": true,
     "python.analysis.inlayHints.functionReturnTypes": true,
     // "python.analysis.inlayHints.variableTypes": true,
     // "python.analysis.typeCheckingMode": "standard",
-    //---//
+    //---debug---//
     "debugpy.debugJustMyCode": false,
     "jupyter.debugJustMyCode": false,
-    //---//
+    //---terminal---//
     "terminal.integrated.cursorStyle": "line",
     "terminal.integrated.cursorStyleInactive": "underline",
     "terminal.integrated.cursorWidth": 2,
-    //---//
-    "notebook.cellFocusIndicator": "border",
-    "notebook.lineNumbers": "on",
-    //---//
-    "git.autofetch": true,
+    "terminal.integrated.gpuAcceleration": "off",
+    //
     "terminal.integrated.allowedLinkSchemes": [
         "file",
         "http",
@@ -60,14 +70,103 @@
         "vscode-insiders",
         "gitkraken"
     ],
-    "diffEditor.ignoreTrimWhitespace": false,
-    "redhat.telemetry.enabled": false,
-    "terminal.integrated.fontSize": 12,
+    //---notebook---//
+    "notebook.cellFocusIndicator": "border",
+    "notebook.lineNumbers": "on",
+    //---todo todo---//
+    "todohighlight.keywordsPattern": "[ \\t]*# ?%%.*(?:\\n[ \\t]*#.*)*",
+    "todohighlight.defaultStyle": {
+        "backgroundColor": "#620f0988",
+        "color": "#f6ecb7"
+    },
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FFFFFF",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "#FF8C00",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+    ],
+    //---indentRainbow---//
+    "indentRainbow.colors": [
+        "rgba(101, 84, 192, 0.2)",
+        "rgba(0, 184, 217, 0.2)",
+        "rgba(54, 179, 126, 0.2)",
+        "rgba(255, 171, 0, 0.2)",
+        "rgba(255, 86, 48, 0.2)",
+        // 
+        "rgba(199, 128, 232, 0.2)",
+        "rgba(8, 202, 209, 0.2)",
+        "rgba(248, 243, 141, 0.2)",
+        "rgba(255, 180, 128, 0.2)",
+        "rgba(255, 105, 97, 0.2)",
+    ],
+    //---cspell---//
     "cSpell.userWords": [
         "GeoGebra",
         "ultralytics"
     ],
+    //---autoSave---//
+    "files.autoSave": "afterDelay",
+    "files.autoSaveWorkspaceFilesOnly": true,
+    //---defaultFormatter---//
     "[quarto]": {
         "editor.defaultFormatter": "quarto.quarto"
     },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[sql]": {
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    //---diffEditor---//
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false
+    },
+    //---end---//
+    "git.autofetch": true,
+    "gitlens.views.repositories.branches.layout": "list",
+    "terminal.integrated.fontSize": 12,
+    "editor.largeFileOptimizations": false,
 }
