@@ -43,6 +43,8 @@
     "interactiveWindow.executeWithShiftEnter": true,
     "jupyter.interactiveWindow.creationMode": "perFile",
     "jupyter.interactiveWindow.textEditor.executeSelection": true,
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
+    // "jupyter.notebookFileRoot": "${fileDirname}",
     //---ruff---//
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
