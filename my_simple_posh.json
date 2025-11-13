@@ -245,7 +245,7 @@
                 },
                 {
                     "type": "executiontime",
-                    // "foreground": "lightWhite",
+                    "fake_foreground": "lightWhite",
                     "foreground": "green",
                     "foreground_templates": [
                         "{{ if gt .Code 0 }}red{{ end }}"
