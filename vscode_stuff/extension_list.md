@@ -43,6 +43,7 @@
     3. Scope to This
     4. Yazi VSCode
     5. Zip Tools
+    6. Project Manager
 20. git
     1. Git Graph
     2. Git History
