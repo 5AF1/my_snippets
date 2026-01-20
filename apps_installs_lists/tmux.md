@@ -16,3 +16,13 @@ Also run `tmux source ~/.tmux.conf` to confirm change in configuration.
 
 ## quick exit
 ctrl + B D
+
+## tmux idle kill prevention
+
+add the following to `~/.bashrc`
+
+```bash
+# >>> tmux keep safi >>>
+export TMOUT=0
+# <<< tmux keep safi <<<
+```
