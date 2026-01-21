@@ -43,7 +43,7 @@ function y() {
 for some personalized view create the following files at `~/.config/yazi` and fill them with the code given below
 
 ```toml
-# yazi.toml
+# ~/.config/yazi/yazi.toml
 [manager]
 show_hidden = true
 sort_by = "size"
