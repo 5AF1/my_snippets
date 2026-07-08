@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Python in Docker (port 6438)",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 6438
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}/model_repository",
+                    "remoteRoot": "/opt/tritonserver/codes"
+                },
+                {
+                    "localRoot": "${workspaceFolder}/triton_common",
+                    "remoteRoot": "/opt/tritonserver/triton_common"
+                }
+            ]
+        }
+    ]
+}

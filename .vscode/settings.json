@@ -3,4 +3,21 @@
         "PYTHONPATH": "${workspaceFolder}"
     },
     "jupyter.notebookFileRoot": "${workspaceFolder}",
+    // selected env for project
+    "terminal.integrated.profiles.linux": {
+        "Conda environemnt": {
+            "path": "/bin/bash",
+            "args": [
+                "-i",
+                "-c",
+                "source /opt/conda/anaconda3/etc/profile.d/conda.sh && conda activate flash && exec bash -i"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "Conda environemnt",
+    // extra path for stubbing
+    "python.analysis.extraPaths": [
+        "./triton_common/stubs"
+    ],
+
 }
