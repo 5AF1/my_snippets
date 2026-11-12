@@ -23,6 +23,7 @@ Add the following line to `~/.config/micro/settings.json` json file.
 
 ```json
 {
-    "mkparents": true
+    "mkparents": true,
+    "clipboard": "terminal"
 }
 ```
