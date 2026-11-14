@@ -22,9 +22,12 @@ eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/5AF1/my_
 #eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/5AF1/my_snippets/main/my_simple_posh.json)"
 
 # Set default value if not already exported elsewhere
-export POSH_OFF="true"
+export OMP="true"
+export OMP_IP=$(hostname -I | awk '{print $1}')
+export OMP_ARCH=$(arch)
+export OMP_NCORES=$(nproc)
 
-if [ "$POSH_OFF" = "true" ]; then
+if [ "$OMP" = "true" ]; then
     export PATH=$PATH:/home/safirur.rashid/bin
     eval "$(oh-my-posh init bash --config https://raw.githubusercontent.com/5AF1/my_snippets/main/my_simple_posh.json)"
 fi
