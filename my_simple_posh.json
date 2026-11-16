@@ -146,7 +146,7 @@
                         "style": "agnoster_full"
                     },
                     "style": "plain",
-                    "template": "{{ if .Root }}\"{{ path .Location .Location }}\"{{ else }}<b>\"{{ path .Location .Location }}\"</b>{{ end }} ",
+                    "template": "{{ if .Root }}\"{{ path .Location .Location }}\"{{ else }}<b>\"{{ if .SSHSession }}{{ .Location }}{{ else }}{{ path .Location .Location }}{{ end }}\"</b>{{ end }} ",
                     "type": "path"
                 }
             ],
