@@ -1,0 +1,1 @@
+code --install-extension ~/Backups/vscode-extensions/codeium-1.48.2.vsix --force
